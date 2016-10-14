@@ -187,13 +187,14 @@ def build_cnn(input_var=None):
     # please see http://lasagne.readthedocs.org/en/latest/user/tutorial.html.
 
     # Max-pooling layer of factor 2 in both dimensions:
-    network = lasagne.layers.MaxPool2DLayer(network, pool_size=(2, 2))
+    # network = lasagne.layers.MaxPool2DLayer(network, pool_size=(2, 2))
 
     # Another convolution with 32 5x5 kernels, and another 2x2 pooling:
-    network = lasagne.layers.Conv2DLayer(
-            network, num_filters=32, filter_size=(5, 5),
-            nonlinearity=lasagne.nonlinearities.rectify)
-    network = lasagne.layers.MaxPool2DLayer(network, pool_size=(2, 2))
+    for i in range(3):
+        network = lasagne.layers.Conv2DLayer(
+                network, num_filters=32, filter_size=(5, 5),
+                nonlinearity=lasagne.nonlinearities.rectify)
+    # network = lasagne.layers.MaxPool2DLayer(network, pool_size=(2, 2))
 
     # A fully-connected layer of 256 units with 50% dropout on its inputs:
     network = lasagne.layers.DenseLayer(
